@@ -1,0 +1,36 @@
+.container{
+	max-width: 1000px;
+}
+
+nav .brand-logo {
+	color: #666;
+	left: 0;
+}
+
+nav .brand-logo img {
+	height: 50px;
+	vertical-align: middle;
+	margin-right: 10px;
+}
+
+nav ul a {
+	color: #666;
+}
+
+.table-of-contents a.active {
+	border-color: #02b3e4;
+}
+
+.table-of-contents a:hover {
+	border-color: #02b3e4;
+}
+
+/*HELPERS*/
+
+.v-a-m{
+	vertical-align: middle;
+}
+
+.m-n{
+	margin: 0 !important;
+}

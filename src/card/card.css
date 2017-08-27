@@ -1,0 +1,18 @@
+.score{
+	color: #666;
+	margin: 0;
+}
+
+.score .score-item{
+	display: inline-block;
+	cursor: pointer;
+}
+
+.score .score-item:hover{
+	color: #222;
+}
+
+.row.action-content{
+	margin-bottom: 0;
+}
+
