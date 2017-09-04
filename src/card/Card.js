@@ -2,6 +2,8 @@
  * Created by greg on 26/08/17.
  */
 import React, {Component} from 'react';
+import Rating from 'react-rating';
+
 import './card.css';
 
 class Card extends Component {
@@ -25,13 +27,10 @@ class Card extends Component {
                     <div className="row action-content valign-wrapper">
 
                         <div className="col s12 m8 l8">
-                            <ul className="score">
-                                <li className="score-item"><i className="material-icons">star_border</i></li>
-                                <li className="score-item"><i className="material-icons">star_border</i></li>
-                                <li className="score-item"><i className="material-icons">star_border</i></li>
-                                <li className="score-item"><i className="material-icons">star_border</i></li>
-                                <li className="score-item"><i className="material-icons">star_border</i></li>
-                            </ul>
+                            <Rating
+                                empty="fa fa-star-o fa-2x"
+                                full="fa fa-star fa-2x"
+                            />
                         </div>
 
                         <div className="col s12 m4 l4 right-align">

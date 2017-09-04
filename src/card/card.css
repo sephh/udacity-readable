@@ -1,18 +1,32 @@
-.score{
+.score {
 	color: #666;
 	margin: 0;
 }
 
-.score .score-item{
+.score .score-item {
 	display: inline-block;
 	cursor: pointer;
 }
 
-.score .score-item:hover{
+.score .score-item:hover {
 	color: #222;
 }
 
-.row.action-content{
+.row.action-content {
 	margin-bottom: 0;
+}
+
+
+.fa-2x.fa-star-o, .fa-2x.fa-star {
+	font-size: 1.5em;
+	margin-right: 2px;
+}
+
+.fa-star-o {
+	color: #cccccc;
+}
+
+.fa-star {
+	color: #FFD700;
 }
 
