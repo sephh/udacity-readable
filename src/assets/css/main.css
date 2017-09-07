@@ -2,16 +2,6 @@
 	max-width: 1000px;
 }
 
-select {
-	display: inline-block;
-	width: auto;
-	background-color: rgba(255,255,255,0.9);
-	padding: 5px;
-	border: 1px solid #f2f2f2;
-	border-radius: 2px;
-	height: auto;
-}
-
 nav .brand-logo {
 	color: #666;
 	left: 0;
@@ -84,6 +74,38 @@ nav ul a {
 }
 
 /*FORMS*/
+
+select {
+	display: inline-block;
+	width: auto;
+	background-color: rgba(255,255,255,0.9);
+	padding: 5px;
+	border: none;
+	border-bottom: 1px solid #9e9e9e;
+	border-radius: 2px;
+	height: auto;
+}
+
+.input-field select {
+	width:100%;
+	padding: 5px;
+	border: none;
+	border-bottom: 1px solid #9e9e9e;
+	border-radius: 2px;
+	height: 3em;
+	position: static;
+	display: block !important;
+	opacity: 1;
+	background-color: transparent;
+	pointer-events: auto;
+}
+
+select:focus {
+	outline: none;
+	border-bottom: 1px solid #02b3e4;
+	-webkit-box-shadow: 0 1px 0 0 #02b3e4;
+	box-shadow: 0 1px 0 0 #02b3e4;
+}
 
 input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):focus:not([readonly]), input[type=password]:not(.browser-default):focus:not([readonly]), input[type=email]:not(.browser-default):focus:not([readonly]), input[type=url]:not(.browser-default):focus:not([readonly]), input[type=time]:not(.browser-default):focus:not([readonly]), input[type=date]:not(.browser-default):focus:not([readonly]), input[type=datetime]:not(.browser-default):focus:not([readonly]), input[type=datetime-local]:not(.browser-default):focus:not([readonly]), input[type=tel]:not(.browser-default):focus:not([readonly]), input[type=number]:not(.browser-default):focus:not([readonly]), input[type=search]:not(.browser-default):focus:not([readonly]), textarea.materialize-textarea:focus:not([readonly]) {
 	border-bottom: 1px solid #02b3e4;

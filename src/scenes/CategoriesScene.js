@@ -146,7 +146,7 @@ class RootScene extends Component {
                         <h4>Modal Header</h4>
 
                         <div className="row">
-                            <div className="input-field col s6">
+                            <div className="input-field col s4">
                                 <input
                                     placeholder="Placeholder"
                                     id="first_name"
@@ -154,9 +154,16 @@ class RootScene extends Component {
                                     ></input>
                                 <label htmlFor="first_name" className="active">First Name</label>
                             </div>
-                            <div className="input-field col s6">
+                            <div className="input-field col s4">
                                 <input id="last_name" type="text"></input>
                                 <label htmlFor="last_name" className="active">Last Name</label>
+                            </div>
+                            <div className="input-field col s4">
+                                <select id="category" value={this.state.sortBy} onChange={(e) => this.sortBy(e.target.value)}>
+                                    <option value="-voteScore">Best score</option>
+                                    <option value="-timestamp">Most recent</option>
+                                </select>
+                                <label htmlFor="category" className="active">Last Name</label>
                             </div>
                         </div>
 
