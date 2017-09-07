@@ -2,6 +2,16 @@
 	max-width: 1000px;
 }
 
+select {
+	display: inline-block;
+	width: auto;
+	background-color: rgba(255,255,255,0.9);
+	padding: 5px;
+	border: 1px solid #f2f2f2;
+	border-radius: 2px;
+	height: auto;
+}
+
 nav .brand-logo {
 	color: #666;
 	left: 0;
@@ -15,6 +25,44 @@ nav .brand-logo img {
 
 nav ul a {
 	color: #666;
+}
+
+.modal{
+	display: inline-block;
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: 140px;
+	background-color: #fafafa;
+	padding: 0;
+	max-height: 70%;
+	width: 55%;
+	margin: auto;
+	overflow-y: auto;
+	border-radius: 2px;
+	will-change: top, opacity;
+	z-index: 9999;
+}
+
+.modal:focus{
+	outline: none;
+}
+
+.overlay:before{
+	content: '';
+	position: fixed;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	background: #000;
+	z-index: 1;
+	opacity: 0.5;
+}
+
+.animated {
+	animation-duration: 0.5s;
+	animation-fill-mode: both;
 }
 
 .table-of-contents a.active {
@@ -33,4 +81,16 @@ nav ul a {
 
 .m-n{
 	margin: 0 !important;
+}
+
+/*FORMS*/
+
+input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):focus:not([readonly]), input[type=password]:not(.browser-default):focus:not([readonly]), input[type=email]:not(.browser-default):focus:not([readonly]), input[type=url]:not(.browser-default):focus:not([readonly]), input[type=time]:not(.browser-default):focus:not([readonly]), input[type=date]:not(.browser-default):focus:not([readonly]), input[type=datetime]:not(.browser-default):focus:not([readonly]), input[type=datetime-local]:not(.browser-default):focus:not([readonly]), input[type=tel]:not(.browser-default):focus:not([readonly]), input[type=number]:not(.browser-default):focus:not([readonly]), input[type=search]:not(.browser-default):focus:not([readonly]), textarea.materialize-textarea:focus:not([readonly]) {
+	border-bottom: 1px solid #02b3e4;
+	-webkit-box-shadow: 0 1px 0 0 #02b3e4;
+	box-shadow: 0 1px 0 0 #02b3e4;
+}
+
+input:not([type]):focus:not([readonly])+label, input[type=text]:not(.browser-default):focus:not([readonly])+label, input[type=password]:not(.browser-default):focus:not([readonly])+label, input[type=email]:not(.browser-default):focus:not([readonly])+label, input[type=url]:not(.browser-default):focus:not([readonly])+label, input[type=time]:not(.browser-default):focus:not([readonly])+label, input[type=date]:not(.browser-default):focus:not([readonly])+label, input[type=datetime]:not(.browser-default):focus:not([readonly])+label, input[type=datetime-local]:not(.browser-default):focus:not([readonly])+label, input[type=tel]:not(.browser-default):focus:not([readonly])+label, input[type=number]:not(.browser-default):focus:not([readonly])+label, input[type=search]:not(.browser-default):focus:not([readonly])+label, textarea.materialize-textarea:focus:not([readonly])+label {
+	color: #02b3e4;
 }

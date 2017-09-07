@@ -3,14 +3,9 @@
  */
 import {ENV} from "../../environment";
 
-const headers = {
-    'Accept': 'application/json',
-    'Authorization': ENV.authorization_header
-};
+export function getCategories() {
 
-export function fetchCategories() {
-
-    return fetch(`${ENV.api_url}/categories`, {headers})
+    return fetch(`${ENV.api_url}/categories`, {headers: ENV.headers})
         .then((res) => res.json());
 
 }

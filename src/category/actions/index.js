@@ -3,7 +3,7 @@
  */
 export const LOAD_CATEGORIES = '[Categories] fetch';
 
-export function loadCategories(categories) {
+export const fetchCategories = (categories) =>  {
     return {
         type: LOAD_CATEGORIES,
         categories

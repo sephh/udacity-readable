@@ -2,31 +2,43 @@
  * Created by greg on 03/09/17.
  */
 
-import React, {Component} from "react";
-import {Link} from "react-router-dom";
-import {connect} from "react-redux";
-import {fetchCategories} from "./utils/api";
-import {loadCategories} from "./actions/index";
+import React, {Component} from 'react';
+import {Link} from 'react-router-dom';
+import {connect} from 'react-redux';
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+
+import {getCategories} from "./utils/api";
+import {fetchCategories} from "./actions/index";
 import {capitalize} from "../utils/helpers";
 
 class CategoryList extends Component {
 
     componentDidMount() {
         const {dispatch} = this.props;
-        fetchCategories().then(res => {
-            dispatch(loadCategories(res.categories))
+        getCategories().then(res => {
+            dispatch(fetchCategories(res.categories))
         });
     }
 
     render() {
 
-        const {categories} = this.props;
+        const {categories,currentCategory} = this.props;
 
         return (
             <ul className="section table-of-contents m-n">
+                <li>
+                    <Link
+                        to={'/'}
+                        className={classNames({'active': !currentCategory})}
+                    >All</Link>
+                </li>
                 {categories.map(c =>
                     <li key={c.name}>
-                        <Link to={c.path} >{capitalize(c.name)}</Link>
+                        <Link
+                            to={'/category/' + c.path}
+                            className={classNames({'active': c.path === currentCategory})}
+                        >{capitalize(c.name)}</Link>
                     </li>
                 )}
 
@@ -35,6 +47,10 @@ class CategoryList extends Component {
 
     }
 }
+
+CategoryList.propTypes = {
+    currentCategory: PropTypes.string,
+};
 
 function mapStateToProps({categories}) {
     return {

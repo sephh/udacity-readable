@@ -1,0 +1,25 @@
+.row.action-content {
+	margin-bottom: 0;
+}
+
+.fa-2x {
+	font-size: 1.5em;
+	margin-right: 10px;
+}
+
+.fa-thumbs-down, .fa-thumbs-up {
+	color: #ccc;
+}
+
+.fa-thumbs-down:hover{
+	color: #F44336;
+}
+
+.fa-thumbs-up:hover {
+	color: #4CAF50;
+}
+
+.score{
+	font-size: 18px;
+}
+
