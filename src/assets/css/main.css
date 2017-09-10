@@ -63,6 +63,18 @@ nav ul a {
 	border-color: #02b3e4;
 }
 
+.btn{
+	margin: 2px;
+}
+
+.btn.btn-flat:hover{
+	background-color: #eee;
+}
+
+.toastify--top-right {
+	top: 5em;
+}
+
 /*HELPERS*/
 
 .v-a-m{
@@ -115,4 +127,10 @@ input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):
 
 input:not([type]):focus:not([readonly])+label, input[type=text]:not(.browser-default):focus:not([readonly])+label, input[type=password]:not(.browser-default):focus:not([readonly])+label, input[type=email]:not(.browser-default):focus:not([readonly])+label, input[type=url]:not(.browser-default):focus:not([readonly])+label, input[type=time]:not(.browser-default):focus:not([readonly])+label, input[type=date]:not(.browser-default):focus:not([readonly])+label, input[type=datetime]:not(.browser-default):focus:not([readonly])+label, input[type=datetime-local]:not(.browser-default):focus:not([readonly])+label, input[type=tel]:not(.browser-default):focus:not([readonly])+label, input[type=number]:not(.browser-default):focus:not([readonly])+label, input[type=search]:not(.browser-default):focus:not([readonly])+label, textarea.materialize-textarea:focus:not([readonly])+label {
 	color: #02b3e4;
+}
+
+input.invalid:not([type]), input.invalid:not([type]):focus, input[type=text].invalid:not(.browser-default), input[type=text].invalid:not(.browser-default):focus, input[type=password].invalid:not(.browser-default), input[type=password].invalid:not(.browser-default):focus, input[type=email].invalid:not(.browser-default), input[type=email].invalid:not(.browser-default):focus, input[type=url].invalid:not(.browser-default), input[type=url].invalid:not(.browser-default):focus, input[type=time].invalid:not(.browser-default), input[type=time].invalid:not(.browser-default):focus, input[type=date].invalid:not(.browser-default), input[type=date].invalid:not(.browser-default):focus, input[type=datetime].invalid:not(.browser-default), input[type=datetime].invalid:not(.browser-default):focus, input[type=datetime-local].invalid:not(.browser-default), input[type=datetime-local].invalid:not(.browser-default):focus, input[type=tel].invalid:not(.browser-default), input[type=tel].invalid:not(.browser-default):focus, input[type=number].invalid:not(.browser-default), input[type=number].invalid:not(.browser-default):focus, input[type=search].invalid:not(.browser-default), input[type=search].invalid:not(.browser-default):focus, textarea.materialize-textarea.invalid, textarea.materialize-textarea.invalid:focus, .select-wrapper.invalid>input.select-dropdown {
+	border-bottom: 1px solid #F44336;
+	-webkit-box-shadow: 0 1px 0 0 #F44336;
+	box-shadow: 0 1px 0 0 #F44336;
 }

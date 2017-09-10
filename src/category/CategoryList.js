@@ -8,22 +8,13 @@ import {connect} from 'react-redux';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
-import {getCategories} from "./utils/api";
-import {fetchCategories} from "./actions/index";
 import {capitalize} from "../utils/helpers";
 
 class CategoryList extends Component {
 
-    componentDidMount() {
-        const {dispatch} = this.props;
-        getCategories().then(res => {
-            dispatch(fetchCategories(res.categories))
-        });
-    }
-
     render() {
 
-        const {categories,currentCategory} = this.props;
+        const {categories, currentCategory} = this.props;
 
         return (
             <ul className="section table-of-contents m-n">
@@ -54,10 +45,7 @@ CategoryList.propTypes = {
 
 function mapStateToProps({categories}) {
     return {
-        categories: Object.keys(categories)
-            .reduce((current, key) => {
-                return [...current, categories[key]]
-            }, [])
+        categories: categories.categories
     }
 }
 

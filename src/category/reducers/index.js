@@ -3,12 +3,16 @@
  */
 import {LOAD_CATEGORIES} from "../actions/index";
 
-export default function reducer(state = {}, action) {
+const initialState = {
+    categories:[]
+};
+
+export default function reducer(state = initialState, action) {
 
     switch (action.type) {
         case LOAD_CATEGORIES: {
             const {categories} = action;
-            return {...state, ...categories};
+            return {categories};
         }
 
         default: {

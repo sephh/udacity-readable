@@ -29,3 +29,29 @@ export function vote(id, vote) {
         .then((res) => res.json());
 
 }
+
+export function addPost(body) {
+
+    return fetch(`${ENV.api_url}/posts`,
+        {
+            headers: ENV.headers,
+            method: 'POST',
+            body: JSON.stringify(body)
+        }
+    )
+        .then((res) => res.json());
+
+}
+
+export function editPost(body){
+
+    return fetch(`${ENV.api_url}/posts/${body.id}`,
+        {
+            headers: ENV.headers,
+            method: 'PUT',
+            body: JSON.stringify(body)
+        }
+    )
+        .then((res) => res.json());
+
+}

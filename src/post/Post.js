@@ -10,6 +10,7 @@ import './post.css';
 
 import {fetchComments} from '../comment/actions';
 import {sendVote} from "./actions/index";
+import {Link} from "react-router-dom";
 
 class Post extends Component {
 
@@ -32,7 +33,7 @@ class Post extends Component {
 
     render() {
 
-        const {author, body, category, id, timestamp, title, voteScore, comments} = this.props;
+        const {author, body, id, timestamp, title, voteScore, comments} = this.props;
         const postComments = comments.filter(c => c.parentId === id);
 
         return (
@@ -52,15 +53,15 @@ class Post extends Component {
 
                     <div className="row action-content valign-wrapper">
 
-                        <div className="col s12 m8 l8">
+                        <div className="col s12 m6 l6">
 
                             <i className="fa fa-thumbs-up fa-2x"
                                onClick={(e) => this.vote("upVote")}
-                               onMouseDown={(e)=>e.preventDefault()}></i>
+                               onMouseDown={(e) => e.preventDefault()}></i>
 
                             <i className="fa fa-thumbs-down fa-2x"
                                onClick={() => this.vote("downVote")}
-                               onMouseDown={(e)=>e.preventDefault()}></i>
+                               onMouseDown={(e) => e.preventDefault()}></i>
 
                             <span
                                 className={classNames('score', {'green-text': voteScore > 0}, {'red-text': voteScore < 0})}>
@@ -69,9 +70,18 @@ class Post extends Component {
 
                         </div>
 
-                        <div className="col s12 m4 l4 right-align">
-                            <a href="#" className="m-n"><i
-                                className="material-icons v-a-m">comment</i> {postComments.length} Comments</a>
+                        <div className="col s12 m6 l6 right-align">
+                            <a className="btn btn-flat m-n orange-text">
+                                <i className="material-icons left">comment</i>
+                                {postComments.length} Comments
+                            </a>
+                            <Link
+                                className="m-n btn btn-flat grey-text"
+                                to={'/edit/post/' + id}
+                            >
+                                <i className="material-icons left">edit</i>
+                                Edit
+                            </Link>
                         </div>
 
                     </div>
