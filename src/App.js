@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {BrowserRouter, Route} from 'react-router-dom';
+import {BrowserRouter, Link, Route} from 'react-router-dom';
 import {connect} from 'react-redux';
 import { ToastContainer } from 'react-toastify';
 
@@ -14,6 +14,7 @@ import logo from './assets/img/udacity-logo.svg';
 import CategoriesScene from './scenes/CategoriesScene';
 import AddPostScene from "./scenes/AddPostScene";
 import EditPostScene from "./scenes/EditPostScene";
+import PostDetailScene from "./scenes/PostDetailScene";
 
 import {fetchUserName} from "./user/actions/index";
 import {fetchPosts} from "./post/actions/index";
@@ -40,10 +41,10 @@ class App extends Component {
                                 <div className="container">
                                     <div className="nav-wrapper">
 
-                                        <a href="/" className="brand-logo">
+                                        <Link to="/" className="brand-logo">
                                             <img src={logo} alt="logo"/>
                                             Readable
-                                        </a>
+                                        </Link>
 
                                     </div>
                                 </div>
@@ -55,6 +56,7 @@ class App extends Component {
                     <Route exact path="/category/:categoryName" component={CategoriesScene}/>
                     <Route exact path="/add/post" component={AddPostScene}/>
                     <Route exact path="/edit/post/:idPost" component={EditPostScene}/>
+                    <Route exact path="/post/:idPost" component={PostDetailScene}/>
 
                     <ToastContainer
                         position="top-right"

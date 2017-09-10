@@ -1,6 +1,7 @@
-import {getComments} from "../utils/api";
+import * as Api from "../utils/api";
 
 export const LOAD_COMMENTS = '[Commment] Load comments';
+export const LOAD_COMMENT = '[Commment] Load comment';
 
 export const loadComments = (comments) => {
     return {
@@ -10,6 +11,18 @@ export const loadComments = (comments) => {
 };
 
 export const fetchComments = (idPost) => dispatch => {
-    getComments(idPost)
+    Api.getComments(idPost)
         .then(comments => dispatch(loadComments(comments)));
+};
+
+export const loadComment = (comment) => {
+    return {
+        type: LOAD_COMMENT,
+        comment
+    }
+};
+
+export const sendVote = (id, vote) => dispatch => {
+    Api.vote(id, vote)
+        .then(comment => dispatch(loadComment(comment)));
 };

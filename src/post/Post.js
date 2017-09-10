@@ -5,14 +5,24 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import SortBy from 'sort-by';
 
 import './post.css';
 
 import {fetchComments} from '../comment/actions';
 import {sendVote} from "./actions/index";
 import {Link} from "react-router-dom";
+import Comment from "../comment/Comment";
 
 class Post extends Component {
+
+    state = {
+        sortBy: '-voteScore'
+    };
+
+    sortBy = (value) => {
+        this.setState({sortBy: value});
+    };
 
     componentDidMount() {
 
@@ -33,7 +43,7 @@ class Post extends Component {
 
     render() {
 
-        const {author, body, id, timestamp, title, voteScore, comments} = this.props;
+        const {author, body, id, timestamp, title, voteScore, comments, showDetails} = this.props;
         const postComments = comments.filter(c => c.parentId === id);
 
         return (
@@ -71,22 +81,74 @@ class Post extends Component {
                         </div>
 
                         <div className="col s12 m6 l6 right-align">
-                            <a className="btn btn-flat m-n orange-text">
+
+                            {!showDetails && <Link
+                                className="btn btn-flat m-n orange-text"
+                                to={'/post/' + id}
+                            >
                                 <i className="material-icons left">comment</i>
                                 {postComments.length} Comments
-                            </a>
-                            <Link
+                            </Link>}
+
+                            {showDetails && <Link
                                 className="m-n btn btn-flat grey-text"
                                 to={'/edit/post/' + id}
                             >
                                 <i className="material-icons left">edit</i>
                                 Edit
-                            </Link>
+                            </Link>}
+
+
                         </div>
 
                     </div>
 
                 </div>
+
+                {showDetails &&
+
+                <div>
+
+                    {postComments
+                        .sort(SortBy(this.state.sortBy))
+                        .map((comment, index) =>
+                            <div className="card-action" key={comment.id}>
+
+                                {index === 0 &&
+                                <div className="row">
+
+                                    <div className="col s12 right-align">
+                                        <span>Order by </span>
+                                        <select value={this.state.sortBy} onChange={(e) => this.sortBy(e.target.value)}>
+                                            <option value="-voteScore">Best score</option>
+                                            <option value="-timestamp">Most recent</option>
+                                        </select>
+                                    </div>
+
+                                </div>}
+
+                                <div className="row m-n">
+
+                                    <div className="col s12">
+                                        <Comment
+                                            key={comment.id}
+                                            id={comment.id}
+                                            title={comment.title}
+                                            author={comment.author}
+                                            body={comment.body}
+                                            timestamp={comment.timestamp}
+                                            voteScore={comment.voteScore}
+                                        />
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        )}
+
+                </div>
+
+                }
 
             </div>
         );
@@ -103,6 +165,7 @@ Post.propTypes = {
     timestamp: PropTypes.number,
     title: PropTypes.string,
     voteScore: PropTypes.number,
+    showDetails: PropTypes.bool
 };
 
 function mapStateToProp({comments}) {

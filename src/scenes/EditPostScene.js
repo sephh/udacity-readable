@@ -38,7 +38,7 @@ class EditPostScene extends Component {
                     <div className="row section">
 
                         <div className="col s12">
-                            <h4>Adding post</h4>
+                            <h4>Editing post</h4>
                         </div>
 
                         {post && <PostForm

@@ -6,3 +6,16 @@ export function getComments(idPost) {
         .then((res) => res.json());
 
 }
+
+export function vote(id, vote) {
+
+    return fetch(`${ENV.api_url}/comments/${id}`,
+        {
+            headers: ENV.headers,
+            method: 'POST',
+            body: JSON.stringify({option: vote})
+        }
+    )
+        .then((res) => res.json());
+
+}

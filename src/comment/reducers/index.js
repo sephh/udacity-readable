@@ -2,6 +2,7 @@ import {normalize} from 'normalizr';
 
 import {LOAD_COMMENTS} from '../actions';
 import {COMMENT_LIST_SCHEMA} from '../schemas';
+import {LOAD_COMMENT} from "../actions/index";
 
 const initialState = {
     ids: [],
@@ -22,6 +23,17 @@ export default function reducer(state = initialState, action) {
             return {
                 ids: [...state.ids, ...newIds],
                 entities: {...state.entities, ...newEntities}
+            }
+
+        }
+
+        case LOAD_COMMENT: {
+
+            const comment = action.comment;
+
+            return {
+                ids: [...state.ids.filter(id => id !== comment.id), comment.id],
+                entities: {...state.entities, [comment.id]: comment}
             }
 
         }

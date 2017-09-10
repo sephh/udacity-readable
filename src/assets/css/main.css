@@ -134,3 +134,26 @@ input.invalid:not([type]), input.invalid:not([type]):focus, input[type=text].inv
 	-webkit-box-shadow: 0 1px 0 0 #F44336;
 	box-shadow: 0 1px 0 0 #F44336;
 }
+
+/*SCORE*/
+
+.fa-2x {
+	font-size: 1.5em;
+	margin-right: 10px;
+}
+
+.fa-thumbs-down, .fa-thumbs-up {
+	color: #ccc;
+}
+
+.fa-thumbs-down:hover{
+	color: #F44336;
+}
+
+.fa-thumbs-up:hover {
+	color: #4CAF50;
+}
+
+.score{
+	font-size: 18px;
+}
