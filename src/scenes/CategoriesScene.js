@@ -20,15 +20,6 @@ class RootScene extends Component {
         this.setState({sortBy: value});
     };
 
-    openAddPostModal = () => {
-        this.setState({addPostModalOpen: true});
-    };
-
-    closeAddPostModal = () => {
-        this.setState({addPostModalOpen: false});
-    };
-
-
     render() {
 
         const {posts, match} = this.props;

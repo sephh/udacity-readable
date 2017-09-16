@@ -2,3 +2,14 @@
 	padding: 15px;
 	border-radius: 6px;
 }
+
+.btn-option{
+	margin: 2px;
+	cursor: pointer;
+	padding: 3px;
+	border-radius: 8px;
+}
+
+.btn-option:hover{
+	background-color: #ffffff;
+}

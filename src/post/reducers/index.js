@@ -1,7 +1,7 @@
 import {normalize} from 'normalizr';
 import {LOAD_POSTS} from '../actions';
 import {POST_LIST_SCHEMA} from '../schemas';
-import {LOAD_POST} from "../actions/index";
+import {DELETE_POST, LOAD_POST} from "../actions/index";
 
 const ininitalState = {
     ids: [],
@@ -35,6 +35,21 @@ export default function reducer(state = ininitalState, action) {
                 entities: {...state.entities, [post.id]: post}
             }
 
+        }
+
+        case DELETE_POST: {
+            const id = action.id;
+
+            return {
+                ...state,
+                entities: {
+                    ...state.entities,
+                    [id]: {
+                        ...state.entities[id],
+                        deleted: true,
+                    }
+                }
+            }
         }
 
         default: {

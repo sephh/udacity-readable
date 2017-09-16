@@ -6,22 +6,24 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import SortBy from 'sort-by';
+import {toast} from 'react-toastify';
+import {Link} from "react-router-dom";
 
+import CommentForm from "../comment/components/CommentForm";
+import Comment from "../comment/Comment";
 import './post.css';
 
 import {fetchComments} from '../comment/actions';
-import {sendVote} from "./actions/index";
-import {Link} from "react-router-dom";
-import Comment from "../comment/Comment";
+import {deletePost, sendVote} from "./actions";
+import {loadComment} from "../comment/actions";
+
+import * as api from "./utils/api";
+import * as commentApi from "../comment/utils/api";
 
 class Post extends Component {
 
     state = {
-        sortBy: '-voteScore'
-    };
-
-    sortBy = (value) => {
-        this.setState({sortBy: value});
+        sortBy: '-voteScore',
     };
 
     componentDidMount() {
@@ -32,14 +34,45 @@ class Post extends Component {
 
     }
 
-    vote(vote) {
+    sortBy = (value) => {
+        this.setState({sortBy: value});
+    };
+
+    vote = (vote) => {
 
         const {id, dispatch} = this.props;
 
         dispatch(sendVote(id, vote));
 
-    }
+    };
 
+    delete = () => {
+
+        const {id, dispatch} = this.props;
+
+        api.deletePost(id)
+            .then(() => {
+                dispatch(deletePost(id));
+                window.history.back();
+            })
+
+    };
+
+    onCommentSubmit = (body) => {
+
+        const {dispatch} = this.props;
+        console.log(body);
+
+        commentApi.addComment(body)
+            .then(comment => {
+
+                dispatch(loadComment(comment));
+                toast.success("Comment successfully added!");
+
+            })
+            .catch(error => toast.error("Can't add the comment!"));
+
+    };
 
     render() {
 
@@ -87,16 +120,27 @@ class Post extends Component {
                                 to={'/post/' + id}
                             >
                                 <i className="material-icons left">comment</i>
-                                {postComments.length} Comments
+                                {postComments.filter(c => !c.deleted).length} Comments
                             </Link>}
 
-                            {showDetails && <Link
-                                className="m-n btn btn-flat grey-text"
-                                to={'/edit/post/' + id}
-                            >
-                                <i className="material-icons left">edit</i>
-                                Edit
-                            </Link>}
+                            {showDetails &&
+
+                            (
+                                <div>
+                                    <Link
+                                        className="m-n btn btn-flat grey-text"
+                                        to={'/edit/post/' + id}
+                                    >
+                                        <i className="material-icons left">edit</i>
+                                        Edit
+                                    </Link>
+                                    < button className="btn btn-flat red-text" onClick={this.delete}>
+                                        <i className="material-icons left">delete</i>
+                                        Remove
+                                    </button>
+                                </div>
+                            )
+                            }
 
 
                         </div>
@@ -110,6 +154,7 @@ class Post extends Component {
                 <div>
 
                     {postComments
+                        .filter(c => !c.deleted)
                         .sort(SortBy(this.state.sortBy))
                         .map((comment, index) =>
                             <div className="card-action" key={comment.id}>
@@ -138,6 +183,7 @@ class Post extends Component {
                                             body={comment.body}
                                             timestamp={comment.timestamp}
                                             voteScore={comment.voteScore}
+                                            parentId={id}
                                         />
                                     </div>
 
@@ -145,6 +191,18 @@ class Post extends Component {
 
                             </div>
                         )}
+
+                    <div className="card-action">
+
+                        <div className="row m-n">
+                            <div className="col s12">
+                                <h4 className="grey-text">Add a comment</h4>
+                                <CommentForm parentId={id} onSubmit={this.onCommentSubmit}/>
+                            </div>
+                        </div>
+
+                    </div>
+
 
                 </div>
 

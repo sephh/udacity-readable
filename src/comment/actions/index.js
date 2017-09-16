@@ -2,6 +2,7 @@ import * as Api from "../utils/api";
 
 export const LOAD_COMMENTS = '[Commment] Load comments';
 export const LOAD_COMMENT = '[Commment] Load comment';
+export const DELETE_COMMENT = '[Commment] delete comment';
 
 export const loadComments = (comments) => {
     return {
@@ -25,4 +26,11 @@ export const loadComment = (comment) => {
 export const sendVote = (id, vote) => dispatch => {
     Api.vote(id, vote)
         .then(comment => dispatch(loadComment(comment)));
+};
+
+export const deleteComment = (id) => {
+  return {
+      type:DELETE_COMMENT,
+      id
+  }
 };

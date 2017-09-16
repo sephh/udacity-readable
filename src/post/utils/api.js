@@ -43,7 +43,7 @@ export function addPost(body) {
 
 }
 
-export function editPost(body){
+export function editPost(body) {
 
     return fetch(`${ENV.api_url}/posts/${body.id}`,
         {
@@ -54,4 +54,16 @@ export function editPost(body){
     )
         .then((res) => res.json());
 
+}
+
+export function deletePost(id) {
+    return fetch(`${ENV.api_url}/posts/${id}`,
+        {
+            headers: ENV.headers,
+            method: 'DELETE'
+        }
+    )
+        .then(res => {
+            return id;
+        });
 }

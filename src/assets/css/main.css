@@ -29,6 +29,7 @@ nav ul a {
 	width: 55%;
 	margin: auto;
 	overflow-y: auto;
+	overflow-x: hidden;
 	border-radius: 2px;
 	will-change: top, opacity;
 	z-index: 9999;
@@ -36,6 +37,10 @@ nav ul a {
 
 .modal:focus{
 	outline: none;
+}
+
+.modal h4 {
+	margin: 1.14rem 0 .912rem 0;
 }
 
 .overlay:before{

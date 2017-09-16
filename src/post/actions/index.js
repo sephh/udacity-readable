@@ -2,6 +2,7 @@ import * as Api from "../utils/api";
 
 export const LOAD_POSTS = '[Post] Load posts';
 export const LOAD_POST = '[Post] Vote';
+export const DELETE_POST = '[Post] Delete post';
 
 export const loadPosts = (posts) => {
     return {
@@ -25,4 +26,11 @@ export const sendVote = (id, vote) => dispatch => {
 export const fetchPosts = () => dispatch => {
     Api.getPosts()
         .then(posts => dispatch(loadPosts(posts)));
+};
+
+export const deletePost = (id) => {
+    return {
+        type: DELETE_POST,
+        id
+    }
 };

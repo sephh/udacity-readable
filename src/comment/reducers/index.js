@@ -2,7 +2,8 @@ import {normalize} from 'normalizr';
 
 import {LOAD_COMMENTS} from '../actions';
 import {COMMENT_LIST_SCHEMA} from '../schemas';
-import {LOAD_COMMENT} from "../actions/index";
+import {DELETE_COMMENT, LOAD_COMMENT} from "../actions/index";
+import {DELETE_POST} from "../../post/actions/index";
 
 const initialState = {
     ids: [],
@@ -36,6 +37,38 @@ export default function reducer(state = initialState, action) {
                 entities: {...state.entities, [comment.id]: comment}
             }
 
+        }
+
+        case DELETE_COMMENT: {
+            const id = action.id;
+
+            return {
+                ...state,
+                entities: {
+                    ...state.entities,
+                    [id]: {
+                        ...state.entities[id],
+                        deleted: true,
+                    }
+                }
+            }
+        }
+
+        case DELETE_POST: {
+            const id = action.id;
+            const comments = state.ids.map(id => state.entities[id]);
+            const deletedComments = comments.filter(c => c.parentId === id);
+            const deletedEntities = deletedComments.reduce((curr, item) => {
+                return {...curr, [item.id]: {...item, parentDeleted: true}}
+            }, {});
+
+            return {
+                ...state,
+                entities: {
+                    ...state.entities,
+                    ...deletedEntities,
+                }
+            }
         }
 
         default: {
