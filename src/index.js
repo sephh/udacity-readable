@@ -12,10 +12,13 @@ import posts from './post/reducers';
 import comments from './comment/reducers';
 import users from './user/reducers';
 
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
 const store = createStore(
     combineReducers({categories, posts, comments, users}),
-    compose(
-        applyMiddleware(thunk))
+    composeEnhancers(
+        applyMiddleware(thunk),
+    ),
 );
 
 ReactDOM.render(

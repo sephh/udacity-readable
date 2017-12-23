@@ -11,6 +11,33 @@ class PostDetailScene extends Component {
 
         const {post} = this.props;
 
+        const noItem = !post || post.deleted;
+
+        if (noItem) {
+            return (
+                <main>
+
+                    <div className="container">
+                        <div className="row section">
+                            <div className="card">
+                                <div className="card-content center">
+
+                                    <h2 className="center grey-text">
+                                        Sorry, the post does not exist.
+                                        <i className="fa fa-frown-o fa-2x"></i>
+                                    </h2>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </main>
+            );
+        }
+
         return (
             <main>
 
@@ -26,7 +53,7 @@ class PostDetailScene extends Component {
                             voteScore={post.voteScore}
                             timestamp={post.timestamp}
                             showDetails
-                        /> }
+                        />}
 
                     </div>
                 </div>

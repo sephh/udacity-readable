@@ -223,7 +223,7 @@ Post.propTypes = {
     timestamp: PropTypes.number,
     title: PropTypes.string,
     voteScore: PropTypes.number,
-    showDetails: PropTypes.bool
+    showDetails: PropTypes.bool,
 };
 
 function mapStateToProp({comments}) {

@@ -40,6 +40,7 @@ export default function reducer(state = ininitalState, action) {
         case DELETE_POST: {
             const id = action.id;
 
+
             return {
                 ...state,
                 entities: {
