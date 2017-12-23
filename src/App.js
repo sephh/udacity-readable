@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {BrowserRouter, Link, Route} from 'react-router-dom';
+import {BrowserRouter, Link, Route, Switch} from 'react-router-dom';
 import {connect} from 'react-redux';
 import { ToastContainer } from 'react-toastify';
 
@@ -52,11 +52,13 @@ class App extends Component {
                         </div>
                     </header>
 
-                    <Route exact path="/" component={CategoriesScene}/>
-                    <Route exact path="/category/:categoryName" component={CategoriesScene}/>
-                    <Route exact path="/add/post" component={AddPostScene}/>
-                    <Route exact path="/edit/post/:idPost" component={EditPostScene}/>
-                    <Route exact path="/post/:idPost" component={PostDetailScene}/>
+                    <Switch>
+                        <Route exact path="/" component={CategoriesScene}/>
+                        <Route exact path="/category/:categoryName" component={CategoriesScene}/>
+                        <Route exact path="/add/post" component={AddPostScene}/>
+                        <Route exact path="/edit/post/:idPost" component={EditPostScene}/>
+                        <Route exact path="/:category/:idPost" component={PostDetailScene}/>
+                    </Switch>
 
                     <ToastContainer
                         position="top-right"

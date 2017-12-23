@@ -46,12 +46,12 @@ class Post extends Component {
 
     delete = () => {
 
-        const {id, dispatch} = this.props;
+        const {id, dispatch, showDetails} = this.props;
 
         api.deletePost(id)
             .then(() => {
                 dispatch(deletePost(id));
-                window.history.back();
+                if (showDetails) window.history.back();
             })
 
     };
@@ -71,7 +71,7 @@ class Post extends Component {
 
     render() {
 
-        const {author, body, id, timestamp, title, voteScore, comments, showDetails} = this.props;
+        const {author, category, body, id, timestamp, title, voteScore, comments, showDetails} = this.props;
         const postComments = comments.filter(c => c.parentId === id);
 
         return (
@@ -91,7 +91,7 @@ class Post extends Component {
 
                     <div className="row action-content valign-wrapper">
 
-                        <div className="col s12 m6 l6">
+                        <div className="col s12 m3 l3">
 
                             <i className="fa fa-thumbs-up fa-2x"
                                onClick={(e) => this.vote("upVote")}
@@ -108,34 +108,32 @@ class Post extends Component {
 
                         </div>
 
-                        <div className="col s12 m6 l6 right-align">
+                        <div className="col s12 m9 l9 right-align">
 
-                            {!showDetails && <Link
-                                className="btn btn-flat m-n orange-text"
-                                to={'/post/' + id}
-                            >
-                                <i className="material-icons left">comment</i>
-                                {postComments.filter(c => !c.deleted).length} Comments
-                            </Link>}
 
-                            {showDetails &&
+                            <div>
 
-                            (
-                                <div>
-                                    <Link
-                                        className="m-n btn btn-flat grey-text"
-                                        to={'/edit/post/' + id}
-                                    >
-                                        <i className="material-icons left">edit</i>
-                                        Edit
-                                    </Link>
-                                    < button className="btn btn-flat red-text" onClick={this.delete}>
-                                        <i className="material-icons left">delete</i>
-                                        Remove
-                                    </button>
-                                </div>
-                            )
-                            }
+                                {!showDetails && <Link
+                                    className="btn btn-flat m-n orange-text"
+                                    to={`/${category}/${id}`}
+                                >
+                                    <i className="material-icons left">comment</i>
+                                    {postComments.filter(c => !c.deleted).length} Comments
+                                </Link>}
+
+                                <Link
+                                    className="m-n btn btn-flat grey-text"
+                                    to={'/edit/post/' + id}
+                                >
+                                    <i className="material-icons left">edit</i>
+                                    Edit
+                                </Link>
+
+                                < button className="btn btn-flat red-text" onClick={this.delete}>
+                                    <i className="material-icons left">delete</i>
+                                    Remove
+                                </button>
+                            </div>
 
 
                         </div>
