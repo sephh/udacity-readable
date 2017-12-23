@@ -18,9 +18,19 @@ export const loadPost = (post) => {
     }
 };
 
+export const addPost = (body) => dispatch => {
+    return Api.addPost(body)
+        .then(post => dispatch(loadPost(post)));
+};
+
+export const editPost = (body) => dispatch => {
+    return Api.editPost(body)
+        .then(post => dispatch(loadPost(post)));
+};
+
 export const sendVote = (id, vote) => dispatch => {
     Api.vote(id, vote)
-        .then(post => dispatch(loadPost(post)));
+        .then(post => dispatch(loadPost(post)))
 };
 
 export const fetchPosts = () => dispatch => {

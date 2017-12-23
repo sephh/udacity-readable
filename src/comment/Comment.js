@@ -9,10 +9,9 @@ import Modal from 'react-modal';
 
 import './comment.css';
 
-import {sendVote, deleteComment} from "./actions/";
+import {sendVote, deleteComment, editComment} from "./actions/";
 import * as apiComment from './utils/api';
 import CommentForm from "./components/CommentForm";
-import {loadComment} from "./actions/index";
 
 class Comment extends Component {
 
@@ -51,9 +50,8 @@ class Comment extends Component {
 
         const {dispatch} = this.props;
 
-        apiComment.editComment({body: body.body, timestamp: body.timestamp},body.id)
-            .then(comment => {
-                dispatch(loadComment(comment));
+        dispatch(editComment({body: body.body, timestamp: body.timestamp},body.id))
+            .then(() => {
                 this.closeModal();
             });
 

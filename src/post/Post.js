@@ -13,12 +13,10 @@ import CommentForm from "../comment/components/CommentForm";
 import Comment from "../comment/Comment";
 import './post.css';
 
-import {fetchComments} from '../comment/actions';
+import {fetchComments, addComment} from '../comment/actions';
 import {deletePost, sendVote} from "./actions";
-import {loadComment} from "../comment/actions";
 
 import * as api from "./utils/api";
-import * as commentApi from "../comment/utils/api";
 
 class Post extends Component {
 
@@ -63,12 +61,9 @@ class Post extends Component {
         const {dispatch} = this.props;
         console.log(body);
 
-        commentApi.addComment(body)
-            .then(comment => {
-
-                dispatch(loadComment(comment));
+        dispatch(addComment(body))
+            .then(() => {
                 toast.success("Comment successfully added!");
-
             })
             .catch(error => toast.error("Can't add the comment!"));
 
@@ -162,7 +157,10 @@ class Post extends Component {
                                 {index === 0 &&
                                 <div className="row">
 
-                                    <div className="col s12 right-align">
+                                    <div className="col s6">
+                                        {postComments.filter(c => !c.deleted).length} Comments
+                                    </div>
+                                    <div className="col s6 right-align">
                                         <span>Order by </span>
                                         <select value={this.state.sortBy} onChange={(e) => this.sortBy(e.target.value)}>
                                             <option value="-voteScore">Best score</option>

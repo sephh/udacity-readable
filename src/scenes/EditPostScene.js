@@ -1,12 +1,9 @@
 import React, {Component} from 'react';
-import {Link} from "react-router-dom";
 import {connect} from "react-redux";
-import { toast } from 'react-toastify';
+import {toast} from 'react-toastify';
 
 import PostForm from "../post/components/PostForm";
-import {editPost} from "../post/utils/api";
-import {loadPost} from "../post/actions/index";
-
+import {editPost} from "../post/actions";
 
 
 class EditPostScene extends Component {
@@ -15,15 +12,12 @@ class EditPostScene extends Component {
 
         const {dispatch} = this.props;
 
-        editPost(body)
+        dispatch(editPost(body))
             .then(post => {
-
-                dispatch(loadPost(post));
                 toast.success("Post successfully updated!");
                 window.history.back();
-
             })
-            .catch( error => toast.error("Can't update the post!"));
+            .catch(error => toast.error("Can't update the post!"));
 
     };
 
@@ -57,7 +51,7 @@ class EditPostScene extends Component {
     }
 }
 
-function mapStateToProps({posts},props) {
+function mapStateToProps({posts}, props) {
 
     const {match} = props;
     const {params} = match;

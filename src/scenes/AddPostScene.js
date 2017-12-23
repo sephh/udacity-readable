@@ -1,11 +1,9 @@
 import React, {Component} from 'react';
-import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 import { toast } from 'react-toastify';
 
 import PostForm from "../post/components/PostForm";
-import {addPost} from "../post/utils/api";
-import {loadPost} from "../post/actions/index";
+import {addPost} from "../post/actions";
 
 
 
@@ -15,13 +13,10 @@ class AddPostScene extends Component {
 
         const {dispatch} = this.props;
 
-        addPost(body)
+        dispatch(addPost(body))
             .then(post => {
-
-                dispatch(loadPost(post));
                 toast.success("Post successfully added!");
                 window.history.back();
-
             })
             .catch( error => toast.error("Can't add the post!"));
 

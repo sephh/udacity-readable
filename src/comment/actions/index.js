@@ -23,14 +23,24 @@ export const loadComment = (comment) => {
     }
 };
 
+export const addComment = (body) => dispatch => {
+    return Api.addComment(body)
+        .then(comment => dispatch(loadComment(comment)));
+};
+
+export const editComment = (body, id) => dispatch => {
+    return Api.editComment(body, id)
+        .then(comment => dispatch(loadComment(comment)));
+};
+
 export const sendVote = (id, vote) => dispatch => {
     Api.vote(id, vote)
         .then(comment => dispatch(loadComment(comment)));
 };
 
 export const deleteComment = (id) => {
-  return {
-      type:DELETE_COMMENT,
-      id
-  }
+    return {
+        type: DELETE_COMMENT,
+        id
+    }
 };
